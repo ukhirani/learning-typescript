@@ -16,6 +16,7 @@ type Bike = {
 // in nominal type checking both of these would not be equal
 // whereas in structural type system , it is
 // TS uses structural type checking
+// it just says "give me a thing that has these fields on it" rather than "give me a thing that is exactly an instanceof this"
 
 function PrintVehicle(vehicle: { name: string; model: number }) {
   console.log(vehicle.name);
@@ -38,3 +39,18 @@ type Tank = {
 const newTank: Tank = { name: "The Tank", weight: 100 };
 
 PrintVehicle(newTank); // ERR
+
+// but wait, what if we have more attributes than the PrintVehicle function wants
+
+type Plane = {
+  name: string;
+  model: number;
+  speed: number;
+};
+
+const newPlane: Plane = { name: "Splendor", model: 567, speed: 123 };
+PrintVehicle(newPlane); // works like a charm
+
+//however we can make TS have nominal type checking also
+
+if (newBike instanceof Bike) console.log("yes"); // well giving error, but something on these lines
