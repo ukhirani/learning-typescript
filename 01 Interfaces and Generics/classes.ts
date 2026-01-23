@@ -1,6 +1,18 @@
 class Ferrari {
   static carsExported = 100; // class properties rather than object properties
 
+  // access modifiers also work
+  // public is the default
+
+  private static carsManufactured = 100; // can only be accessed within the class
+  private static _name = "ferrari"; // it's a good convention to keep the private variables name start with an underscore , like i did here
+
+  #carsRecycled = 100; // this means private fields, meaning chrome debugger tools can get this, it's not secure, it's just private
+
+  protected printCompanyName = () => {
+    console.log(Ferrari._name);
+  };
+
   static {
     console.log("static called");
     console.log(
@@ -33,6 +45,8 @@ class Ferrari {
     console.log(this.model);
   }
 } // this is a normal implementation of any class
+
+Ferrari.carsManufactured = 0; // err because carsManufactured is private static member of class Ferrari
 
 const latest_ferrari = new Ferrari("latest");
 
