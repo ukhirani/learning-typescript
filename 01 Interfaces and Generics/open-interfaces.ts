@@ -33,3 +33,19 @@ const obj2 = new the_class();
 
 obj2.the_method(); // OK
 obj2.the_method_i_need(); //OK
+
+// will typescript allow over-riding of methods of interfaces
+interface THEINTERFACE {
+  the_method(): number;
+}
+
+class lets_see implements THEINTERFACE {
+  the_method(): void {}
+  the_method(asdf: any): number {
+    return 1;
+  }
+  the_method(): number | void {
+    return 1;
+  }
+  the_method_i_need(): void {}
+}
